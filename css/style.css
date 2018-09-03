@@ -1,14 +1,18 @@
+body {
+  background-color: grey;
+}
+
 section {
   margin: 200px;
-  border: 1px solid black;
+  border: 3px solid black;
   width: 1024px;
   height: 960px;
+  background-color: black;
 }
 
 .ball {
   width: 200px;
   height: 200px;
-  background-color: red;
   border-radius: 50%;
   position:fixed;
 }
@@ -17,3 +21,17 @@ div {
   font-size: 15px;
   font-weight: bold;
 }
+
+button {
+  background-color: green;
+  padding: 20px;
+  margin: 20px;
+  width: 400px;
+  font-size: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  line-height: 60px;
+  color: white;
+  border-radius: 30px
+}
+
