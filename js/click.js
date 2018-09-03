@@ -5,6 +5,8 @@ $(document).ready(function(){
    newBubbles();
   })
 
+  var coloursBall = ["red", "green", "blue"];
+
   function newBubbles() {
     $("#game").append("<div>Hello</div>");
     $("div").addClass("ball");
@@ -13,9 +15,13 @@ $(document).ready(function(){
     console.log(randomWidth);
     var randomHeight = Math.floor(Math.random() * (1000));
     console.log(randomHeight);
+    var randomColor = coloursBall[Math.floor(Math.random() * coloursBall.length)];
+    console.log(randomColor);
 
     $(".ball").css({"margin-left": randomWidth});
     $(".ball").css({"margin-top": randomHeight});
+    $(".ball").css({"background-color": randomColor});
+
   }
 
 })
