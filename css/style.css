@@ -123,3 +123,29 @@ section {
   background: red;
   border-radius: 30px;
 }
+
+#hardcore {
+  padding: 20px;
+  margin: 60px;
+  width: 400px;
+  margin-top: 30px;
+  font-size: 50px;
+  color: orange;
+  font-weight: bolder;
+  background: darkred;
+  border-color: yellow;
+  border-radius: 30px;
+}
+
+#hardcoreGame {
+  padding: 20px;
+  margin: 60px;
+  width: 400px;
+  margin-top: 30px;
+  font-size: 50px;
+  color: orange;
+  font-weight: bolder;
+  background: darkred;
+  border-color: yellow;
+  border-radius: 30px;
+}
