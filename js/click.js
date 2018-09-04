@@ -7,7 +7,7 @@ $(document).ready(function() {
   
   var coloursBall = ["red", "green", "blue", "pink", "yellow"];
 
-  function newBubbles() {
+  function easyBubbles() {
     //generates new bubble with random properties and set timer
     var randomWidth = Math.floor(Math.random() * (1024 - $(".ball").width())); //max width on css 1024px
     console.log(randomWidth);
@@ -41,7 +41,7 @@ $(document).ready(function() {
     if (!lost) {
       console.log("Ball");
       clearTimeout(timeoutID);
-      newBubbles();
+      easyBubbles();
     }
   });
   
@@ -59,7 +59,7 @@ $(document).ready(function() {
     lost = false;
     console.log("Start");
     counter = 0;
-    newBubbles();
+    easyBubbles();
   });
 
   $("#medium").click(function() {
@@ -69,6 +69,17 @@ $(document).ready(function() {
     $("#start").append("<button id='mediumGame'>Let's blaster!</button>");
   });
 
+  $("#start").on("click", "#mediumGame", function() {
+    //Start button calls a new bubble and scoring
+    $(".ball").remove();
+    $("#game").append("<div class='ball'></div>");
+    lost = false;
+    console.log("Start");
+    counter = 0;
+    newBubbles();
+  });
+  
+
   $("#hard").click(function() {
     $("#level").empty();
     $("#level").append("<div>Pray for your soul</div>");
@@ -76,6 +87,33 @@ $(document).ready(function() {
     $("#start").append("<button id='hardGame'>Let's blaster!</button>");
   });
 
-
+  function makeNewPosition(){ //moving ball for hardcore level
+      var h = $(window).height() - 50;
+      var w = $(window).width() - 50;
+    
+      var nh = Math.floor(Math.random() * h);
+      var nw = Math.floor(Math.random() * w);
+    
+      return [nh,nw];      
+    }
+  
+    function movingDiv(element){
+      var newq = makeNewPosition();
+      $(element).animate({ 
+        top: newq[0], left: newq[1] }, 1000, function(){
+        movingDiv(element);        
+        });
+    };
+  
+  $("#start").on("click", "#hardGame", function() {
+    //Start button calls a new bubble and scoring
+    $(".ball").remove();
+    $("#game").append("<div class='ball'></div>");
+    lost = false;
+    console.log("Start");
+    counter = 0;
+    newBubbles();
+    movingDiv();
+  });
 
 });
