@@ -19,11 +19,6 @@ section {
   border-radius: 50%;
 }
 
-div {
-  font-size: 15px;
-  font-weight: bold;
-}
-
 button {
   margin-top: -40px;
   margin-left: 500px;
@@ -38,3 +33,11 @@ button {
   border-radius: 30px;
 }
 
+#counter {
+  margin: 200px;
+  font-size: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  line-height: 60px;
+  color: white;
+}
