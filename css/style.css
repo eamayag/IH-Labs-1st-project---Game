@@ -1,9 +1,12 @@
 body {
-  background-color: grey;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 section {
-  margin: 200px;
+  margin: 200px; 
   border: 3px solid black;
   width: 1024px;
   height: 960px;
@@ -14,7 +17,6 @@ section {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  position:fixed;
 }
 
 div {
@@ -23,15 +25,16 @@ div {
 }
 
 button {
+  margin-top: -40px;
+  margin-left: 500px;
   background-color: green;
   padding: 20px;
-  margin: 20px;
   width: 400px;
   font-size: 50px;
   font-weight: bolder;
   font-style: italic;
   line-height: 60px;
   color: white;
-  border-radius: 30px
+  border-radius: 30px;
 }
 
