@@ -1,5 +1,5 @@
 body {
-  background-color: darkgray;
+  background-color: black;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -7,10 +7,11 @@ body {
 
 section {
   margin: 200px; 
-  border: 3px solid black;
+  border: 20px dotted grey;
   width: 1024px;
   height: 960px;
   background-color: black;
+  border-radius: 30px;
 }
 
 .ball {
@@ -19,7 +20,7 @@ section {
   border-radius: 50%;
 }
 
-button {
+#startbutton {
   margin-top: -40px;
   margin-left: 500px;
   background-color: green;
@@ -29,7 +30,7 @@ button {
   font-weight: bolder;
   font-style: italic;
   line-height: 60px;
-  color: white;
+  color: whitesmoke;
   border-radius: 30px;
 }
 
@@ -39,5 +40,86 @@ button {
   font-weight: bolder;
   font-style: italic;
   line-height: 60px;
-  color: white;
+  color: whitesmoke;
+}
+
+#level {
+  margin: 100px 500px;
+  font-size: 50px;
+  font-weight: bolder;
+  color: whitesmoke;
+}
+
+#easy {
+  padding: 20px;
+  margin: 60px;
+  width: 400px;
+  margin-top: 30px;
+  font-size: 50px;
+  color: whitesmoke;
+  font-weight: bolder;
+  background: darkgreen;
+  border-radius: 30px;
+}
+
+#easyGame {
+  margin-top: -40px;
+  margin-left: 500px;
+  background-color: green;
+  padding: 20px;
+  width: 400px;
+  font-size: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  line-height: 60px;
+  color: whitesmoke;
+  border-radius: 30px;
+}
+
+#medium {
+  padding: 20px;
+  margin: 60px;
+  width: 400px;
+  margin-top: 30px;
+  font-size: 50px;
+  color: black;
+  font-weight: bolder;
+  background: orange;
+  border-radius: 30px;
+}
+
+#mediumGame {
+  padding: 20px;
+  margin: 60px;
+  width: 400px;
+  margin-top: 30px;
+  font-size: 50px;
+  color: black;
+  font-weight: bolder;
+  background: orange;
+  border-radius: 30px;
+}
+
+#hard {
+  padding: 20px;
+  margin: 60px;
+  width: 400px;
+  margin-top: 30px;
+  font-size: 50px;
+  color: yellow;
+  font-weight: bolder;
+  background: red;
+  border-radius: 30px;
+}
+
+#hardGame {
+  padding: 20px;
+  margin: 60px;
+  width: 400px;
+  margin-top: 30px;
+  font-size: 50px;
+  color: yellow;
+  font-weight: bolder;
+  background: red;
+  border-radius: 30px;
 }

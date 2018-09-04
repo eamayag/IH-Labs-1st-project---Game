@@ -4,6 +4,7 @@ $(document).ready(function() {
   let timeoutID = null; //time for clicking or you lose 
   let lost = false; //for gameOver function
 
+  
   var coloursBall = ["red", "green", "blue", "pink", "yellow"];
 
   function newBubbles() {
@@ -35,7 +36,23 @@ $(document).ready(function() {
     alert("You lost!");
   }
 
-  $("#start").click(function() {
+  $("#game").on("click", ".ball", function() {
+    //click a bubble call to end previous bubble and timer
+    if (!lost) {
+      console.log("Ball");
+      clearTimeout(timeoutID);
+      newBubbles();
+    }
+  });
+  
+  $("#easy").click(function() {
+    $("#level").empty();
+    $("#level").append("<div>Ok, little baby, just try to pick a bubble a time...</div>");
+    $("#start").empty();
+    $("#start").append("<button id='easyGame'>Let's blaster!</button>");
+  });
+
+  $("#start").on("click", "#easyGame", function() {
     //Start button calls a new bubble and scoring
     $(".ball").remove();
     $("#game").append("<div class='ball'></div>");
@@ -45,12 +62,20 @@ $(document).ready(function() {
     newBubbles();
   });
 
-  $("#game").on("click", ".ball", function() {
-    //click a bubble call to end previous bubble and timer
-    if (!lost) {
-      console.log("Ball");
-      clearTimeout(timeoutID);
-      newBubbles();
-    }
+  $("#medium").click(function() {
+    $("#level").empty();
+    $("#level").append("<div>Ok, let's try harder, be faster!!!</div>");
+    $("#start").empty();
+    $("#start").append("<button id='mediumGame'>Let's blaster!</button>");
   });
+
+  $("#hard").click(function() {
+    $("#level").empty();
+    $("#level").append("<div>Pray for your soul</div>");
+    $("#start").empty();
+    $("#start").append("<button id='hardGame'>Let's blaster!</button>");
+  });
+
+
+
 });
