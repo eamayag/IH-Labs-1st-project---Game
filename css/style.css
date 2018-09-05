@@ -43,6 +43,15 @@ section {
   color: whitesmoke;
 }
 
+#timer {
+  margin: 200px;
+  font-size: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  line-height: 60px;
+  color: whitesmoke;
+}
+
 #level {
   margin: 100px 500px;
   font-size: 50px;
