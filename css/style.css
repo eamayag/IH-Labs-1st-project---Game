@@ -1,169 +1,106 @@
-body {
+body { /*default values*/
   background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 70px;
+  font-weight: bolder;
+  line-height: 60px;
+  color: whitesmoke;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
-section {
+section { /*game board*/
   margin: 200px; 
-  border: 20px dotted grey;
-  width: 1024px;
-  height: 960px;
-  background-color: black;
+  width: 1500px;
+  height: 1500px;
+  background-color:rgba(0,0,0,0);
   border-radius: 30px;
 }
 
-.ball {
+#gameZone { /*div surrounding game board*/
+  flex-direction: row;
+  display: inline-block;
+  border: 20px dotted grey; 
+  margin: 200px;
+  width: 2000px;
+  height: 2000px;
+  background-color: black;
+}
+
+.ball { /*appearing onclick*/
   width: 200px;
   height: 200px;
+  border-style: solid;
   border-radius: 50%;
 }
 
-#startbutton {
-  margin-top: -40px;
-  margin-left: 500px;
-  background-color: green;
+#playerZone { /*where start button finally appears*/
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  display: inline-block;
+  height: 2000px;
+  width: 600px;
+}
+
+#levelZone { /*whole div where you select difficulty level*/
+  flex-direction: row;
+  display: inline-block;
+  height: 2000px;
+  width: 1050px;
+  text-align: center;
+}
+
+#level { /*div with text of select your level*/
+  margin-top: 120px;
   padding: 20px;
-  width: 400px;
-  font-size: 50px;
+  text-align: center;
+}
+
+#infolevel { /*div with description of levels*/
+  line-height: 100px;
+}
+
+button { /*all buttons default-options*/
+  padding: 40px;
+  margin: 120px;
+  width: 600px;
+  margin-top: 30px;
+  font-size: 80px;
   font-weight: bolder;
-  font-style: italic;
-  line-height: 60px;
-  color: whitesmoke;
   border-radius: 30px;
 }
 
-#counter {
-  margin: 200px;
-  font-size: 50px;
-  font-weight: bolder;
-  font-style: italic;
-  line-height: 60px;
+.easy { /*both buttons of this level*/
   color: whitesmoke;
-}
-
-#timer {
-  margin: 200px;
-  font-size: 50px;
-  font-weight: bolder;
-  font-style: italic;
-  line-height: 60px;
-  color: whitesmoke;
-}
-
-/* #progressbar {
-  height: 100px;
-  color: black;
-  font-weight: bolder;
-  font-style: italic;
-  font-size: 70px;
-  background: red;
-} */
-
-#level {
-  margin: 100px 500px;
-  font-size: 50px;
-  font-weight: bolder;
-  color: whitesmoke;
-}
-
-#easy {
-  padding: 20px;
-  margin: 60px;
-  width: 400px;
-  margin-top: 30px;
-  font-size: 50px;
-  color: whitesmoke;
-  font-weight: bolder;
   background: darkgreen;
-  border-radius: 30px;
 }
 
-#easyGame {
-  margin-top: -40px;
-  margin-left: 500px;
-  background-color: green;
-  padding: 20px;
-  width: 400px;
-  font-size: 50px;
-  font-weight: bolder;
-  font-style: italic;
-  line-height: 60px;
-  color: whitesmoke;
-  border-radius: 30px;
-}
-
-#medium {
-  padding: 20px;
-  margin: 60px;
-  width: 400px;
-  margin-top: 30px;
-  font-size: 50px;
+.medium { /*both buttons of this level*/
   color: black;
-  font-weight: bolder;
   background: orange;
-  border-radius: 30px;
 }
 
-#mediumGame {
-  padding: 20px;
-  margin: 60px;
-  width: 400px;
-  margin-top: 30px;
-  font-size: 50px;
-  color: black;
-  font-weight: bolder;
-  background: orange;
-  border-radius: 30px;
-}
-
-#hard {
-  padding: 20px;
-  margin: 60px;
-  width: 400px;
-  margin-top: 30px;
-  font-size: 50px;
+.hard { /*both buttons of this level*/
   color: yellow;
-  font-weight: bolder;
   background: red;
-  border-radius: 30px;
 }
 
-#hardGame {
-  padding: 20px;
-  margin: 60px;
-  width: 400px;
-  margin-top: 30px;
-  font-size: 50px;
-  color: yellow;
-  font-weight: bolder;
-  background: red;
-  border-radius: 30px;
-}
-
-#hardcore {
-  padding: 20px;
-  margin: 60px;
-  width: 400px;
-  margin-top: 30px;
-  font-size: 50px;
+.hardcore { /*both buttons of this level*/
   color: orange;
-  font-weight: bolder;
   background: darkred;
   border-color: yellow;
-  border-radius: 30px;
 }
 
-#hardcoreGame {
-  padding: 20px;
-  margin: 60px;
-  width: 400px;
-  margin-top: 30px;
-  font-size: 50px;
-  color: orange;
-  font-weight: bolder;
-  background: darkred;
-  border-color: yellow;
-  border-radius: 30px;
+#numbers { /*div with timer and scoring*/
+  flex-direction: row;
+  display: inline-block;
+  height: 2000px;
+  width: 600px;
+  margin-top: 120px;
+  padding-bottom: 400px;
+  text-align: center;
+  font-size: 100px;
+  line-height: 100px;
 }
