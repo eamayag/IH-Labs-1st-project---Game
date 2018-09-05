@@ -52,7 +52,7 @@ $(document).ready(function() {
       case "hardcore":
         timeoutID = setTimeout(function() {
         gameOver();
-        }, 2000);
+        }, 10000);
         movingDiv(); 
       default:
     }
@@ -118,7 +118,7 @@ $(document).ready(function() {
 //LOGIC FOR HARDCORE LEVEL  
   $("#hardcore").click(function() {
     $("#level").empty();
-    $("#level").append("<div>HOW YOU DARE! PRAY FOR YOUR SOUL</div>");
+    $("#level").append("<div>HOW YOU DARE! PRAY FOR YOUR SOUL... well... maybe exagerated... just try some craziness ;)</div>");
     $("#start").empty();
     $("#start").append("<button id='hardcoreGame'>Let's blaster!</button>");
   });
@@ -126,16 +126,14 @@ $(document).ready(function() {
   function makeNewPosition(){ //moving ball for hardcore level
     var h = $("#game").height() - 200;
     var w = $("#game").width() - 200;
-  
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-  
     return [nh,nw];      
   }
 
   function movingDiv(){
     var movingBubble = makeNewPosition();
-    $(".ball").animate({width: movingBubble[0], height: movingBubble[1] })
+    $(".ball").animate({"margin-left": movingBubble[0], "margin-top": movingBubble[1] })
   };
   
     $("#start").on("click", "#hardcoreGame", function() {  //Start button calls a new bubble and scoring
