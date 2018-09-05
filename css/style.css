@@ -52,6 +52,15 @@ section {
   color: whitesmoke;
 }
 
+/* #progressbar {
+  height: 100px;
+  color: black;
+  font-weight: bolder;
+  font-style: italic;
+  font-size: 70px;
+  background: red;
+} */
+
 #level {
   margin: 100px 500px;
   font-size: 50px;
