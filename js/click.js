@@ -19,17 +19,46 @@ $(document).ready(function() {
       clearInterval(timeoutID);
       bubbles(level);
     } 
-  });
+  })
 
-  function printTime(time){
+  function printTime(time){  //called from levels
     $("#progressbar").html("Remaining time: " + time);  
   }
 
-  //LOGIC FOR CREATING NEW BUBBLES EACH CLICK
-  function bubbles(level) { //generates new bubble with random properties and set timer
+  //SELECTING LEVELS BEFORE STARTING
+  $(".easy").click(function() {
+    $("#infolevel").empty();
+    $("#infolevel").append("<div>Ok, little baby, just try to click every bubble. If you're too slow, you'll lost!... Easy peasy!</div>");
+    $("#start").empty();
+    $("#start").append("<button class='easy'>Let's blaster!</button>");
+  });
+
+  $(".medium").click(function() {
+    $("#infolevel").empty();
+    $("#infolevel").append("<div>Let's try something messy, click on every bubble-whatever before the time ends... get ready for surprises! ;)</div>");
+    $("#start").empty();
+    $("#start").append("<button class='medium'>Let's blaster!</button>");
+  });
+
+  $(".hard").click(function() {
+    $("#infolevel").empty();
+    $("#infolevel").append("<div>Steady hands? Do you really think you're fast? Catch me, if you can...</div>");
+    $("#start").empty();
+    $("#start").append("<button class='hard'>Let's blaster!</button>");
+  });
+
+  $(".hardcore").click(function() {
+    $("#infolevel").empty();
+    $("#infolevel").append("<div>HOW YOU DARE! PRAY FOR YOUR SOUL... well... maybe exaggerated... or not ;)</div>");
+    $("#start").empty();
+    $("#start").append("<button class='hardcore'>Let's blaster!</button>");
+  });
+
+  //LOGIC FOR CREATING NEW BUBBLES EACH CLICK, INCREMENTING COUNTER - BY LEVEL
+  function bubbles(level) { //generates new bubble with random properties
     var randomWidth = Math.floor(Math.random() * (1500 - $(".ball").width())); //max width on css 2000px
     var randomHeight = Math.floor(Math.random() * (1500 - $(".ball").height())); //max heigth on css 2000px
-    var coloursBall = ["red", "green", "blue", "pink", "yellow"]; 
+    var coloursBall = ["red", "green", "blue", "pink", "yellow", "grey", "white"]; 
     var randomColor = coloursBall[Math.floor(Math.random() * coloursBall.length)];
 
     $(".ball").css({ "margin-left": randomWidth });
@@ -38,7 +67,7 @@ $(document).ready(function() {
 
     switch (level) { //difficulty levels
       case "easy":
-        time = 500;
+        time = 800;
         break;
       case "medium":
         time = 500;
@@ -55,28 +84,39 @@ $(document).ready(function() {
       default:
     }
    
-   printTime(time);	
-   timeoutID = setInterval(function() {
+   timeoutID = setInterval(function() { //timer to click every bubble
      time -= 1;
      printTime(time);
      if (time == 0) {
        gameOver();
      }
    }, 1);
-   
+
     counter++ //number of clicks, for scoring
     var score = document.getElementById("counter");
     score.innerHTML = "Your score: " + counter; 
   }
 
-  //LOGIC FOR EASY LEVEL
-  $(".easy").click(function() {
-    $("#infolevel").empty();
-    $("#infolevel").append("<div>Ok, little baby, you have two whole seconds to click every bubble. If you're too slow, you'll lost!... Easy peasy!</div>");
-    $("#start").empty();
-    $("#start").append("<button class='easy'>Let's blaster!</button>");
-  });
+  function makeNewPosition(){ //moving bubble for hard and hardcore levels
+    var h = $("#gameZone").height() - 200;
+    var w = $("#gameZone").width() - 200;
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    return [nh,nw];      
+  }
 
+  function movingDiv(){ //moving DIV containing bubble for harder levels
+    var movingBubble = makeNewPosition();
+    $(".ball").animate({"margin-left": movingBubble[0], "margin-top": movingBubble[1] });
+  };
+  
+  function changingDiv(){  //changing bubble for medium and hardcore level
+    var movingBubble = makeNewPosition();
+    //if (movingBubble[0] > 2000 (-)
+    $(".ball").animate({width: movingBubble[0], height: movingBubble[1] })
+  };
+
+  //WHEN CLICKING A BALL - BY LEVEL
   $("#start").on("click", ".easy", function() { //Start button calls a new bubble and scoring
     $(".ball").remove();
     $("#gameZone").append("<div class='ball'></div>");
@@ -84,15 +124,6 @@ $(document).ready(function() {
     counter = 0;
     level = "easy";
     bubbles(level);
-  
-  });
-
-  //LOGIC FOR MEDIUM LEVEL
-  $(".medium").click(function() {
-    $("#infolevel").empty();
-    $("#infolevel").append("<div>Let's try harder, just be faster, click on every ball-<i>whatever</i> before the time ends... and you better forget about borders ;)</div>");
-    $("#start").empty();
-    $("#start").append("<button class='medium'>Let's blaster!</button>");
   });
 
   $("#start").on("click", ".medium", function() { //Start button calls a new bubble and scoring
@@ -104,29 +135,7 @@ $(document).ready(function() {
     bubbles(level);
   });  
 
-  //LOGIC FOR HARD LEVEL
-  $(".hard").click(function() {
-    $("#infolevel").empty();
-    $("#infolevel").append("<div>Steady hands? Do you really think you're fast? Let's get a little bit messy...</div>");
-    $("#start").empty();
-    $("#start").append("<button class='hard'>Let's blaster!</button>");
-  });
-  
-  function makeNewPosition(){ //moving ball for hard level
-    var h = $("#gameZone").height() - 200;
-    var w = $("#gameZone").width() - 200;
-    var nh = Math.floor(Math.random() * h);
-    var nw = Math.floor(Math.random() * w);
-    return [nh,nw];      
-  }
-
-  function changingDiv(){
-    var movingBubble = makeNewPosition();
-    $(".ball").animate({width: movingBubble[0], height: movingBubble[1] })
-  };
-
-  $("#start").on("click", ".hard", function() {
-    //Start button calls a new bubble and scoring
+  $("#start").on("click", ".hard", function() {     //Start button calls a new bubble and scoring
     $(".ball").remove();
     $("#gameZone").append("<div class='ball'></div>");
     lost = false;
@@ -135,28 +144,7 @@ $(document).ready(function() {
     bubbles(level);
   });
 
-//LOGIC FOR HARDCORE LEVEL  
-  $(".hardcore").click(function() {
-    $("#infolevel").empty();
-    $("#infolevel").append("<div>HOW YOU DARE! PRAY FOR YOUR SOUL... well... maybe exagerated... or not ;)</div>");
-    $("#start").empty();
-    $("#start").append("<button class='hardcore'>Let's blaster!</button>");
-  });
-
-  function makeNewPosition(){ //moving ball for hardcore level
-    var h = $("#gameZone").height() - 200;
-    var w = $("#gameZone").width() - 200;
-    var nh = Math.floor(Math.random() * h);
-    var nw = Math.floor(Math.random() * w);
-    return [nh,nw];      
-  }
-
-  function movingDiv(){
-    var movingBubble = makeNewPosition();
-    $(".ball").animate({"margin-left": movingBubble[0], "margin-top": movingBubble[1] });
-  };
-  
-    $("#start").on("click", ".hardcore", function() {  //Start button calls a new bubble and scoring
+  $("#start").on("click", ".hardcore", function() {  //Start button calls a new bubble and scoring
     $(".ball").remove();
     $("#gameZone").append("<div class='ball'></div>");
     lost = false;
