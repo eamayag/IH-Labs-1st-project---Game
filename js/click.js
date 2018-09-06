@@ -10,7 +10,6 @@ $(document).ready(function() {
   //LOGIC FOR BEGGINING, GAME OVER AND TIMER
   function gameOver() {    //to call when timer ends
     lost = true;
-    //alert("You lost!");
     clearInterval(timeoutID);
     $("#game").append("<div id='gameover'>Poor you... you'll have to be quicker next time! Loser!!! ;)</div>");
   }
@@ -27,7 +26,7 @@ $(document).ready(function() {
   })
 
   function printTime(time){  //called from levels
-    $("#progressbar").html("Remaining time: " + time);  
+    $("#progressbar").html("Seconds left: " + time);  
   }
 
   //SELECTING LEVELS BEFORE STARTING
@@ -72,18 +71,18 @@ $(document).ready(function() {
 
     switch (level) { //difficulty levels
       case "easy":
-        time = 800;
+        time = 30;
         break;
       case "medium":
-        time = 500;
+        time = 20;
         changingDiv(); 
       break;
       case "hard":
-        time = 500;
+        time = 20;
         movingDiv();  
       break;
       case "hardcore":
-        time = 500;
+        time = 20;
         changingDiv(); 
         movingDiv(); 
       default:
@@ -91,18 +90,11 @@ $(document).ready(function() {
    
    timeoutID = setInterval(function() { //timer to click every bubble
      time -= 1;
-     printTime(time);
+     printTime((time/10).toFixed(1));
      if (time <= 0) {
        gameOver();
-      
-    //   clearInterval(timeoutID);
-    //  var mensaje =  setInterval(function(){
-    //     $("#gameZone").append("<div class='lostmessage'>Poor you... you'll have to be quicker next time! Loser!!!</div>")
-    //     clearInterval(mensaje)
-    // $(".lostmessage").remove()
-    //   })
-    }
-   }, 1);
+      }
+   }, 100);
 
     counter++ //number of clicks, for scoring
     var score = document.getElementById("counter");
