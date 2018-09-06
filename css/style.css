@@ -23,7 +23,7 @@ body { /*default values*/
 }
 
 #playerZone { /*2nd BIG DIV - start button and numbers*/
-  border-left: 20px dotted grey; 
+  border-left: 20px groove grey;
   height: 2500px;
   width: 1400px;
   margin-top: 50px;
@@ -93,4 +93,13 @@ button { /*all buttons default-options*/
   color: orange;
   background: darkred;
   border-color: yellow;
+}
+
+#gameover { /*game over message*/
+ color: red;
+ border: 20px dotted yellow;
+ border-radius: 30px;
+ line-height: 200px;
+ padding-left: 50px;
+ margin-top: 50px; 
 }

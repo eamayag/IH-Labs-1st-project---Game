@@ -10,9 +10,14 @@ $(document).ready(function() {
   //LOGIC FOR BEGGINING, GAME OVER AND TIMER
   function gameOver() {    //to call when timer ends
     lost = true;
-    alert("You lost!");
-  	clearInterval(timeoutID);
+    //alert("You lost!");
+    clearInterval(timeoutID);
+    $("#game").append("<div id='gameover'>Poor you... you'll have to be quicker next time! Loser!!! ;)</div>");
   }
+
+  $("body").click(function() {
+    $("#gameover").remove();
+  });
 
   $("#gameZone").on("click", ".ball", function() { //click a bubble calls to end previous bubble and timer
     if (!lost) {
@@ -56,8 +61,8 @@ $(document).ready(function() {
 
   //LOGIC FOR CREATING NEW BUBBLES EACH CLICK, INCREMENTING COUNTER - BY LEVEL
   function bubbles(level) { //generates new bubble with random properties
-    var randomWidth = Math.floor(Math.random() * (1500 - $(".ball").width())); //max width on css 2000px
-    var randomHeight = Math.floor(Math.random() * (1500 - $(".ball").height())); //max heigth on css 2000px
+    var randomWidth = Math.floor(Math.random() * (2000 - $(".ball").width())); //max width on css 2000px
+    var randomHeight = Math.floor(Math.random() * (2000 - $(".ball").height())); //max heigth on css 2000px
     var coloursBall = ["red", "green", "blue", "pink", "yellow", "grey", "white"]; 
     var randomColor = coloursBall[Math.floor(Math.random() * coloursBall.length)];
 
@@ -71,7 +76,7 @@ $(document).ready(function() {
         break;
       case "medium":
         time = 500;
-        changingDiv() 
+        changingDiv(); 
       break;
       case "hard":
         time = 500;
@@ -79,7 +84,7 @@ $(document).ready(function() {
       break;
       case "hardcore":
         time = 500;
-        changingDiv() 
+        changingDiv(); 
         movingDiv(); 
       default:
     }
@@ -87,9 +92,16 @@ $(document).ready(function() {
    timeoutID = setInterval(function() { //timer to click every bubble
      time -= 1;
      printTime(time);
-     if (time == 0) {
+     if (time <= 0) {
        gameOver();
-     }
+      
+    //   clearInterval(timeoutID);
+    //  var mensaje =  setInterval(function(){
+    //     $("#gameZone").append("<div class='lostmessage'>Poor you... you'll have to be quicker next time! Loser!!!</div>")
+    //     clearInterval(mensaje)
+    // $(".lostmessage").remove()
+    //   })
+    }
    }, 1);
 
     counter++ //number of clicks, for scoring
@@ -117,40 +129,17 @@ $(document).ready(function() {
   };
 
   //WHEN CLICKING A BALL - BY LEVEL
-  $("#start").on("click", ".easy", function() { //Start button calls a new bubble and scoring
-    $(".ball").remove();
-    $("#gameZone").append("<div class='ball'></div>");
-    lost = false;
-    counter = 0;
-    level = "easy";
-    bubbles(level);
-  });
+  $("#start").on("click", ".easy", function() { changeLevel("easy")});
+  $("#start").on("click", ".medium", function() { changeLevel("medium")});  
+  $("#start").on("click", ".hard", function() { changeLevel("hard")});
+  $("#start").on("click", ".hardcore", function() { changeLevel("hardcore")});
 
-  $("#start").on("click", ".medium", function() { //Start button calls a new bubble and scoring
+  function changeLevel(l){
     $(".ball").remove();
     $("#gameZone").append("<div class='ball'></div>");
     lost = false;
     counter = 0;
-    level = "medium";
+    level = l;
     bubbles(level);
-  });  
-
-  $("#start").on("click", ".hard", function() {     //Start button calls a new bubble and scoring
-    $(".ball").remove();
-    $("#gameZone").append("<div class='ball'></div>");
-    lost = false;
-    counter = 0;
-    level = "hard";
-    bubbles(level);
-  });
-
-  $("#start").on("click", ".hardcore", function() {  //Start button calls a new bubble and scoring
-    $(".ball").remove();
-    $("#gameZone").append("<div class='ball'></div>");
-    lost = false;
-    counter = 0;
-    level = "hardcore"
-    bubbles(level);
-  });
-  
+  }
 });
