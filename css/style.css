@@ -8,18 +8,11 @@ body { /*default values*/
   display: flex;
 }
 
-section { /*game board*/
-  margin: 200px; 
-  width: 1500px;
-  height: 1500px;
-  background-color:rgba(0,0,0,0);
-  border-radius: 30px;
-}
-
-#gameZone { /*div surrounding game board*/
+#gameZone { /*div for game board*/
   flex-direction: row;
   display: inline-block;
   border: 20px dotted grey; 
+  border-radius: 30px;
   margin: 200px;
   width: 2000px;
   height: 2000px;
