@@ -14,18 +14,18 @@ $(document).ready(function() {
     $("#game").append("<div id='gameover'>Poor you... you'll have to be quicker next time! Loser!!! ;)</div>");
   }
 
-  $("body").click(function() {
+  $("body").click(function() { //removing gameover screen after losing 
     $("#gameover").remove();
   });
 
-  $("#gameZone").on("click", ".ball", function() { //click a bubble calls to end previous bubble and timer
+  $("#gameZone").on("click", ".ball", function() { //clicking a bubble calls to end previous bubble and timer
     if (!lost) {
       clearInterval(timeoutID);
       bubbles(level);
     } 
   })
 
-  function printTime(time){  //called from levels
+  function printTime(time){  //timer, called from levels
     $("#progressbar").html("Seconds left: " + time);  
   }
 
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
   $(".medium").click(function() {
     $("#infolevel").empty();
-    $("#infolevel").append("<div>Let's try something messy, click on every bubble-whatever before the time ends... get ready for surprises! ;)</div>");
+    $("#infolevel").append("<div>Let's try something messy, click on every bubble-whatever before the time ends... </div>");
     $("#start").empty();
     $("#start").append("<button class='medium'>Let's blaster!</button>");
   });
@@ -53,19 +53,19 @@ $(document).ready(function() {
 
   $(".hardcore").click(function() {
     $("#infolevel").empty();
-    $("#infolevel").append("<div>HOW YOU DARE! PRAY FOR YOUR SOUL... well... maybe exaggerated... or not ;)</div>");
+    $("#infolevel").append("<div>HOW YOU DARE! PRAY FOR YOUR SOUL... well... maybe exaggerated... get ready for surprises! ;)</div>");
     $("#start").empty();
     $("#start").append("<button class='hardcore'>Let's blaster!</button>");
   });
 
   //LOGIC FOR CREATING NEW BUBBLES EACH CLICK, INCREMENTING COUNTER - BY LEVEL
-  function bubbles(level) { //generates new bubble with random properties
+  function bubbles(level) { //generates new bubble with random properties, called from every button-start and when clicking a bubble
     var randomWidth = Math.floor(Math.random() * (2000 - $(".ball").width())); //max width on css 2000px
     var randomHeight = Math.floor(Math.random() * (2000 - $(".ball").height())); //max heigth on css 2000px
     var coloursBall = ["red", "green", "blue", "pink", "yellow", "grey", "white"]; 
     var randomColor = coloursBall[Math.floor(Math.random() * coloursBall.length)];
 
-    $(".ball").css({ "margin-left": randomWidth });
+    $(".ball").css({ "margin-left": randomWidth }); 
     $(".ball").css({ "margin-top": randomHeight });
     $(".ball").css({ "border-color": randomColor });
 
@@ -88,7 +88,7 @@ $(document).ready(function() {
       default:
     }
    
-   timeoutID = setInterval(function() { //timer to click every bubble
+   timeoutID = setInterval(function() { //timer to click every bubble. Timer is cleared when clicking the ball and game over
      time -= 1;
      printTime((time/10).toFixed(1));
      if (time <= 0) {
@@ -96,28 +96,38 @@ $(document).ready(function() {
       }
    }, 100);
 
-    counter++ //number of clicks, for scoring
+    counter++ //number of clicks, for scoring, setting to 0 when changing level
     var score = document.getElementById("counter");
     score.innerHTML = "Your score: " + counter; 
   }
 
-  function makeNewPosition(){ //moving bubble for hard and hardcore levels
-    var h = $("#gameZone").height() - 200;
-    var w = $("#gameZone").width() - 200;
-    var nh = Math.floor(Math.random() * h);
+  function makeNewBubble(option){ //moving or sizing bubble for hard and hardcore levels
+    var h = $("#gameZone").height();
+	  var w = $("#gameZone").width();
+    switch (option) {
+      case "moving":
+          h -= $(".ball").height();
+          w -= $(".ball").width();
+  		break;
+      case "sizing":
+          h -= parseInt($(".ball").css("margin-top"));
+          w -= parseInt($(".ball").css("margin-left"));      	  
+      break;
+      default:
+  	}
+	  var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-    return [nh,nw];      
+	  return [nh,nw];      
   }
-
+  
   function movingDiv(){ //moving DIV containing bubble for harder levels
-    var movingBubble = makeNewPosition();
-    $(".ball").animate({"margin-left": movingBubble[0], "margin-top": movingBubble[1] });
+    var newBubble = makeNewBubble("moving");
+    $(".ball").animate({"margin-top": newBubble[0], "margin-left": newBubble[1] });
   };
   
   function changingDiv(){  //changing bubble for medium and hardcore level
-    var movingBubble = makeNewPosition();
-    //if (movingBubble[0] > 2000 (-)
-    $(".ball").animate({width: movingBubble[0], height: movingBubble[1] })
+    var newBubble = makeNewBubble("sizing");   
+    $(".ball").animate({height: newBubble[0], width: newBubble[1] })
   };
 
   //WHEN CLICKING A BALL - BY LEVEL
