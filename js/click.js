@@ -60,8 +60,8 @@ $(document).ready(function() {
 
   //LOGIC FOR CREATING NEW BUBBLES EACH CLICK, INCREMENTING COUNTER - BY LEVEL
   function bubbles(level) { //generates new bubble with random properties, called from every button-start and when clicking a bubble
-    var randomWidth = Math.floor(Math.random() * (2000 - $(".ball").width())); //max width on css 2000px
-    var randomHeight = Math.floor(Math.random() * (2000 - $(".ball").height())); //max heigth on css 2000px
+    var randomWidth = Math.floor(Math.random() * (800 - $(".ball").width())); //max width on css 800px
+    var randomHeight = Math.floor(Math.random() * (600 - $(".ball").height())); //max heigth on css 600px
     var coloursBall = ["red", "green", "blue", "pink", "yellow", "grey", "white"]; 
     var randomColor = coloursBall[Math.floor(Math.random() * coloursBall.length)];
 
