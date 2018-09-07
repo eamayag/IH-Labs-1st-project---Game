@@ -1,5 +1,3 @@
-IH-Labs-1st-project---Game
-
 DEVELOPED: Javascript & JQuery, DOM manipulation-based. 
 
 USER INTERACTION: mouse click.
