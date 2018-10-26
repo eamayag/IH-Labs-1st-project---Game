@@ -1,4 +1,5 @@
 First proyect at Ironhack Web development bootcamp, after 2 weeks of learning. 
+
 DEVELOPED: Javascript & JQuery, DOM manipulation-based. 
 
 USER INTERACTION: mouse click.
