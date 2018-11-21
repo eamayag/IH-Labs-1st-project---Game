@@ -4,11 +4,15 @@
 
 **USER INTERACTION**: mouse click.
 
+---
+
 ## FASTER BLASTER!
 
 Be ready to click in every bubble-like you see. 
 If timer ends and you haven't reached and clicked the bubble, you loose. 
 Play against timer and try to get higher scoring than your friends.
+
+---
 
 ### GAME INSTRUCTIONS:
 1. Select your level:
